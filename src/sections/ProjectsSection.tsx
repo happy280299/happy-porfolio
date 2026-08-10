@@ -8,50 +8,26 @@ import {
 import FadeIn from "../components/FadeIn";
 import LiveProjectButton from "../components/LiveProjectButton";
 
-interface ProjectImage {
-  src: string;
-  fallback: string;
-}
-
 interface Project {
   number: string;
   name: string;
   category: string;
-  col1Images: [ProjectImage, ProjectImage];
-  col2Image: ProjectImage;
+  col1Images: [string, string];
+  col2Image: string;
   href: string;
 }
 
-// Fallback khi chưa có ảnh tự chụp trong /public/projects (WordPress mshots)
-function shot(url: string, w: number, h: number) {
-  return `https://s0.wp.com/mshots/v1/${encodeURIComponent(url)}?w=${w}&h=${h}`;
-}
-
-// Ảnh tự chụp lưu tại: public/projects/<slug>-desktop.png | -mobile.png | -tall.png
+// Ảnh tự chụp lưu tại: public/projects/<slug>-desktop.jpg | -mobile.jpg | -tall.jpg
 function projectImages(
   slug: string,
-  url: string,
 ): Pick<Project, "col1Images" | "col2Image"> {
   return {
     col1Images: [
-      {
-        src: `/projects/${slug}-desktop.jpg`,
-        fallback: shot(url, 1400, 900),
-      },
-      { src: `/projects/${slug}-mobile.jpg`, fallback: shot(url, 480, 860) },
+      `/projects/${slug}-desktop.jpg`,
+      `/projects/${slug}-mobile.jpg`,
     ],
-    col2Image: {
-      src: `/projects/${slug}-tall.jpg`,
-      fallback: shot(url, 1024, 1280),
-    },
+    col2Image: `/projects/${slug}-tall.jpg`,
   };
-}
-
-// Nếu ảnh local chưa tồn tại → tự chuyển sang fallback
-function onImgError(e: React.SyntheticEvent<HTMLImageElement>) {
-  const img = e.currentTarget;
-  const fb = img.dataset.fallback;
-  if (fb && img.src !== fb) img.src = fb;
 }
 
 const PROJECTS: Project[] = [
@@ -60,35 +36,35 @@ const PROJECTS: Project[] = [
     name: "reGentox",
     category: "Healthcare E-Commerce",
     href: "https://regentoxvn.com/market",
-    ...projectImages("regentox", "https://regentoxvn.com/market"),
+    ...projectImages("regentox"),
   },
   {
     number: "02",
     name: "Wikex Exchange",
     category: "Crypto Exchange",
     href: "https://wikex.vn/trade/BTC/USDT",
-    ...projectImages("wikex", "https://wikex.vn/trade/BTC/USDT"),
+    ...projectImages("wikex"),
   },
   {
     number: "03",
     name: "GoAds Platform",
     category: "AdTech Platform",
     href: "https://www.goads.vn/vi",
-    ...projectImages("goads", "https://www.goads.vn/vi"),
+    ...projectImages("goads"),
   },
   {
     number: "04",
     name: "DOLK",
     category: "E-Commerce / Markup",
     href: "https://dolk.jp/pages/toukenranbu/tsurumaru/",
-    ...projectImages("dolk", "https://dolk.jp/pages/toukenranbu/tsurumaru/"),
+    ...projectImages("dolk"),
   },
   {
     number: "05",
     name: "Hashimoto Naika",
     category: "Clinic Website / Markup",
     href: "https://www.hashimoto-naika.net/",
-    ...projectImages("hashimoto", "https://www.hashimoto-naika.net/"),
+    ...projectImages("hashimoto"),
   },
 ];
 
@@ -154,18 +130,14 @@ function ProjectCard({
             style={{ width: "40%" }}
           >
             <img
-              src={project.col1Images[0].src}
-              data-fallback={project.col1Images[0].fallback}
-              onError={onImgError}
+              src={project.col1Images[0]}
               alt={`${project.name} preview 1`}
               loading="lazy"
               className={`${CARD_RADIUS} object-cover object-top w-full`}
               style={{ height: "clamp(130px, 16vw, 230px)" }}
             />
             <img
-              src={project.col1Images[1].src}
-              data-fallback={project.col1Images[1].fallback}
-              onError={onImgError}
+              src={project.col1Images[1]}
               alt={`${project.name} preview 2`}
               loading="lazy"
               className={`${CARD_RADIUS} object-cover object-top w-full`}
@@ -174,9 +146,7 @@ function ProjectCard({
           </div>
           <div className="flex" style={{ width: "60%" }}>
             <img
-              src={project.col2Image.src}
-              data-fallback={project.col2Image.fallback}
-              onError={onImgError}
+              src={project.col2Image}
               alt={`${project.name} preview 3`}
               loading="lazy"
               className={`${CARD_RADIUS} object-cover object-top w-full h-full`}
