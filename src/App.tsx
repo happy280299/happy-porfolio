@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { Routes, Route } from 'react-router-dom';
 import Lenis from 'lenis';
 import HeroSection from './sections/HeroSection';
 import MarqueeSection from './sections/MarqueeSection';
@@ -6,8 +7,9 @@ import AboutSection from './sections/AboutSection';
 import ServicesSection from './sections/ServicesSection';
 import ProjectsSection from './sections/ProjectsSection';
 import ContactSection from './sections/ContactSection';
+import DemoPage from './pages/DemoPage';
 
-export default function App() {
+function HomePage() {
   useEffect(() => {
     const lenis = new Lenis({
       lerp: 0.1, // độ mượt: nhỏ hơn = mượt/trễ hơn, lớn hơn = bám tay hơn
@@ -36,5 +38,14 @@ export default function App() {
       <ProjectsSection />
       <ContactSection />
     </main>
+  );
+}
+
+export default function App() {
+  return (
+    <Routes>
+      <Route path="/" element={<HomePage />} />
+      <Route path="/demo" element={<DemoPage />} />
+    </Routes>
   );
 }
