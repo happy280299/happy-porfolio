@@ -35,7 +35,9 @@ export default function DemoPage() {
       if (response.ok && data.success) {
         setSyncStatus("success");
         setSyncMessage(data.message || "Translations synced successfully!");
-        setTimeout(() => setSyncStatus("idle"), 3000);
+        setTimeout(() => {
+          window.location.reload();
+        }, 1500);
       } else {
         setSyncStatus("error");
         setSyncMessage(data.message || "Failed to sync translations");
