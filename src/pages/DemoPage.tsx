@@ -174,36 +174,36 @@ export default function DemoPage() {
       <div className="w-full max-w-2xl mx-auto mb-16">
         <article className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-lg p-8 shadow-lg">
           <h1 className="text-4xl font-bold text-gray-800 mb-2">
-            <Trans>transalte.title</Trans>
+            <Trans>translate.title</Trans>
           </h1>
           <p className="text-xl text-indigo-600 font-semibold mb-6">
-            <Trans>transalte.subtitle</Trans>
+            <Trans>translate.subtitle</Trans>
           </p>
 
           <p className="text-gray-700 leading-relaxed mb-8">
-            <Trans>transalte.intro</Trans>
+            <Trans>translate.intro</Trans>
           </p>
 
           <section className="mb-8">
             <h2 className="text-2xl font-bold text-gray-800 mb-3">
-              <Trans>transalte.section1Title</Trans>
+              <Trans>translate.section1Title</Trans>
             </h2>
             <p className="text-gray-700 leading-relaxed">
-              <Trans>transalte.section1Content</Trans>
+              <Trans>translate.section1Content</Trans>
             </p>
           </section>
 
           <section className="mb-8">
             <h2 className="text-2xl font-bold text-gray-800 mb-3">
-              <Trans>transalte.section2Title</Trans>
+              <Trans>translate.section2Title</Trans>
             </h2>
             <p className="text-gray-700 leading-relaxed">
-              <Trans>transalte.section2Content</Trans>
+              <Trans>translate.section2Content</Trans>
             </p>
           </section>
 
           <p className="text-gray-700 leading-relaxed italic border-l-4 border-indigo-600 pl-4">
-            <Trans>transalte.conclusion</Trans>
+            <Trans>translate.conclusion</Trans>
           </p>
         </article>
       </div>
