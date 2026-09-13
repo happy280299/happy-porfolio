@@ -2,8 +2,8 @@
 
 exports.handler = async (event, context) => {
   try {
-    // Replace with your Railway proxy server URL
-    const PROXY_URL = process.env.PROXY_SERVER_URL || "https://translation-proxy-server.railway.app";
+    // Proxy server URL
+    const PROXY_URL = "https://translation-proxy-server.onrender.com";
 
     const response = await fetch(`${PROXY_URL}/sync-translations`, {
       method: "POST",
