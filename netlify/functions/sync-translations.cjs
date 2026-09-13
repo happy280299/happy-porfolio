@@ -17,23 +17,33 @@ async function fetchGoogleSheet() {
   });
 }
 
-// Parse CSV to nested objects
+// Parse CSV to nested objects - handle quoted fields
 function parseCSV(csv) {
-  const lines = csv.split("\n").filter((line) => line.trim());
-  const headers = lines[0]
-    .split(",")
-    .map((h) => h.trim().toLowerCase());
-  const enIndex = headers.indexOf("en");
-  const viIndex = headers.indexOf("vi");
-  const codeIndex = headers.indexOf("code");
+  const lines = csv.trim().split("\n");
+  if (lines.length < 2) {
+    throw new Error("CSV is empty or has no data rows");
+  }
+
+  // Parse header
+  const headers = parseCSVLine(lines[0]);
+  const codeIndex = headers.findIndex((h) => h.toLowerCase() === "code");
+  const enIndex = headers.findIndex((h) => h.toLowerCase() === "en");
+  const viIndex = headers.findIndex((h) => h.toLowerCase() === "vi");
+
+  if (codeIndex === -1 || enIndex === -1 || viIndex === -1) {
+    throw new Error(
+      `Missing columns. Found: ${headers.join(", ")}`
+    );
+  }
 
   const en = {};
   const vi = {};
 
+  // Parse data rows
   for (let i = 1; i < lines.length; i++) {
-    const cells = lines[i]
-      .split(",")
-      .map((c) => c.trim().replace(/^"|"$/g, ""));
+    const cells = parseCSVLine(lines[i]);
+    if (cells.length === 0 || !cells[codeIndex]) continue;
+
     const code = cells[codeIndex];
     const enValue = cells[enIndex];
     const viValue = cells[viIndex];
@@ -47,6 +57,29 @@ function parseCSV(csv) {
   }
 
   return { en, vi };
+}
+
+// Parse single CSV line handling quoted fields
+function parseCSVLine(line) {
+  const result = [];
+  let current = "";
+  let insideQuotes = false;
+
+  for (let i = 0; i < line.length; i++) {
+    const char = line[i];
+
+    if (char === '"') {
+      insideQuotes = !insideQuotes;
+    } else if (char === "," && !insideQuotes) {
+      result.push(current.trim().replace(/^"|"$/g, ""));
+      current = "";
+    } else {
+      current += char;
+    }
+  }
+  result.push(current.trim().replace(/^"|"$/g, ""));
+
+  return result;
 }
 
 function setNestedProperty(obj, path, value) {
