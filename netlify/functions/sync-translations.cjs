@@ -4,11 +4,13 @@ const path = require("path");
 exports.handler = async (event, context) => {
   try {
     // Chạy script để generate language files
+    const outputDir = path.join(__dirname, "../../src/locales/langs");
+
     await generateLangFromGridSheet({
       defaultLang: "en",
       sheetId: "0",
       ssid: "1UY7dYDSzMfonEbQsp6TXNn8_rEiKenQS_zdSTRmVGXY",
-      outputDir: path.join(process.cwd(), "src/locales/langs"),
+      outputDir: outputDir,
     });
 
     return {
