@@ -1,5 +1,12 @@
 {
-  "key": {
-    "title": "This is title"
+  "transalte": {
+    "title": "The Future of Web Development",
+    "subtitle": "Trends to Watch in 2024",
+    "intro": "Web development continues to evolve at a rapid pace. New technologies and frameworks emerge constantly, shaping how we build digital experiences.",
+    "section1Title": "AI-Powered Development",
+    "section1Content": "AI tools are revolutionizing how developers write code. From autocomplete to full function generation, AI is becoming an essential part of the development workflow.",
+    "section2Title": "Web3 and Blockchain",
+    "section2Content": "Decentralized applications are gaining traction. Blockchain technology offers new possibilities for security and transparency in web applications.",
+    "conclusion": "The future of web development is exciting. By staying updated with these trends, developers can build better, faster, and more secure applications."
   }
 }

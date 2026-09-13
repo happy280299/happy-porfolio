@@ -1,5 +1,12 @@
 {
-  "key": {
-    "title": "Đây là title"
+  "transalte": {
+    "title": "Tương Lai Của Phát Triển Web",
+    "subtitle": "Xu Hướng Cần Theo Dõi Năm 2024",
+    "intro": "Phát triển web tiếp tục phát triển nhanh chóng. Các công nghệ và framework mới liên tục xuất hiện, định hình cách chúng ta xây dựng trải nghiệm kỹ thuật số.",
+    "section1Title": "Phát Triển Được Hỗ Trợ Bởi AI",
+    "section1Content": "Các công cụ AI đang cách mạng hóa cách các nhà phát triển viết mã. Từ tự động hoàn thành đến tạo hàm đầy đủ, AI đang trở thành một phần không thể thiếu của quy trình phát triển.",
+    "section2Title": "Web3 và Blockchain",
+    "section2Content": "Các ứng dụng phi tập trung đang ngày càng phổ biến. Công nghệ blockchain cung cấp những khả năng mới cho bảo mật và tính minh bạch trong các ứng dụng web.",
+    "conclusion": "Tương lai của phát triển web rất hứa hẹn. Bằng cách cập nhật những xu hướng này, các nhà phát triển có thể xây dựng các ứng dụng tốt hơn, nhanh hơn và an toàn hơn."
   }
 }

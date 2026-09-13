@@ -19,9 +19,12 @@ async function fetchGoogleSheet() {
 
 // Parse CSV to nested objects - handle quoted fields
 function parseCSV(csv) {
+  console.log("CSV received:", csv.substring(0, 200)); // Debug log
   const lines = csv.trim().split("\n");
+  console.log("Lines count:", lines.length); // Debug log
+
   if (lines.length < 2) {
-    throw new Error("CSV is empty or has no data rows");
+    throw new Error(`CSV is empty or has no data rows. Got ${lines.length} lines. Data: ${csv.substring(0, 500)}`);
   }
 
   // Parse header
